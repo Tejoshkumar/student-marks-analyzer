@@ -1,0 +1,53 @@
+# Student Marks Analyzer
+
+n = int(input("Enter number of students: "))
+students = []
+
+# -------- Input Section --------
+for i in range(n):
+    student_name = input("Enter student name: ")
+    num_subjects = int(input("Enter number of subjects: "))
+
+    subject_marks = {}
+
+    for j in range(num_subjects):
+        subject_name = input("Enter subject name: ")
+        marks = int(input("Enter marks: "))
+        subject_marks[subject_name] = marks
+
+    student = {
+        "name": student_name,
+        "marks": subject_marks
+    }
+
+    students.append(student)
+
+# -------- Analysis Section --------
+highest_total = -1
+class_topper = ""
+
+print("\n--- Student-wise Analysis ---")
+
+for student in students:
+    name = student["name"]
+    marks_values = student["marks"].values()
+
+    max_marks = max(marks_values)
+    min_marks = min(marks_values)
+    total_marks = sum(marks_values)
+    average_marks = total_marks / len(marks_values)
+
+    if total_marks > highest_total:
+        highest_total = total_marks
+        class_topper = name
+
+    print(f"\nStudent: {name}")
+    print(f"Max Marks: {max_marks}")
+    print(f"Min Marks: {min_marks}")
+    print(f"Total Marks: {total_marks}")
+    print(f"Average Marks: {average_marks:.2f}")
+
+# -------- Class-level Result --------
+print("\n--- Class Result ---")
+print(f"Class Topper: {class_topper}")
+print(f"Highest Total Marks: {highest_total}")
